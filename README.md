@@ -12,7 +12,8 @@ This will launch a Gradio web interface accessible via a local URL, typically ht
 ## Installation
 1. Clone this repository: 
 ```bash
-
+git clone https://github.com/C1pn0/RAG_example.git
+cd RAG_example
 ```
 2. Install the required packages from the `requirements.txt`:
 ```bash
@@ -21,6 +22,6 @@ pip install -r requirements.txt
 
 ### Configuration
 Ensure that your API keys for external services like OpenAI and Pinecone are set in your environment variables (`OPENAI_API_KEY` and `PINECONE_API_KEY`) or specified in a configuration file.
-
+Optionally e-mail should be added via `DEFAULT_EMAIL` environmental variable for large-scale parsing of NCBI databases to avoid server-side interruption.
 
 
