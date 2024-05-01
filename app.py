@@ -78,7 +78,7 @@ qa_chain = RetrievalQA.from_chain_type(
 )
 
 # Define a function to handle chat responses
-def chat_response(msg, history=None):
+def chat_response(msg, history):
     """
     Function to handle chat responses.
     Args:
@@ -87,19 +87,10 @@ def chat_response(msg, history=None):
     Returns:
         str: The chat response.
     """
-    if history:
-        vectorstore.embeddings.embed_documents(OpenAIEmbeddings(model='text-embedding-ada-002'), texts=history[-1], namespace='history')
     return qa_chain({"query": msg})["result"]
 
 # Setup a Gradio interface for the application
 demo = gr.ChatInterface(chat_response)
 
-# Launch the application
-if __name__ == "main":
-    import argparse
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--inline", help="Inline the chat response for jupyter notebook", action="store_true")
-    if parser.parse_args().inline:
-        demo.launch(inline=True)
-    else:
-        demo.launch()
+
+demo.launch()
